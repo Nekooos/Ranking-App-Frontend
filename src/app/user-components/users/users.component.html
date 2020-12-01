@@ -1,0 +1,15 @@
+<div>
+    <h1>Registered Users</h1>
+        
+    <table *ngIf='users'>
+        <tr>
+            <th>Name</th>
+            <th> </th>
+        </tr>
+        <tr *ngFor="let user of users">
+            <a [routerLink]="['/user/id/', user.id]">
+                <td>{{ user.firstName }} {{ user.lastName }}</td>
+            </a>
+        </tr>
+    </table>
+</div>

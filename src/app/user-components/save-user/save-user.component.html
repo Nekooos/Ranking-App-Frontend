@@ -1,0 +1,31 @@
+<h1>Register</h1>
+<form #f="ngForm" (ngSubmit)="onSubmitUser()">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
+    </div>
+
+    <div class="form-group">
+        <label for="first-name">First name</label>
+        <input type="text" class="form-control" id="first-name" required required [(ngModel)]="user.firstName" name="first-name">
+    </div>
+
+    <div class="form-group">
+        <label for="last-name">Last name</label>
+        <input type="text" class="form-control" id="last-name" required [(ngModel)]="user.lastName" name="last-name">
+    </div>
+
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="form-control"  id="gender" required [(ngModel)]="user.gender" name="gender">
+            <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+        </select>
+    </div>
+
+    <input type = "submit" class = "submit-button" value = "Register">
+</form>

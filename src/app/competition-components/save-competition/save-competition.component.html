@@ -1,0 +1,29 @@
+<h1>Register</h1>
+<form (ngSubmit)="onSubmitCompetition()">
+    <div class="form-group">
+        <label for="name">Event name</label>
+        <input type="text" class="form-control" id="name " required [(ngModel)]="competition.name" name="name">
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" required [(ngModel)]="competition.location" name="location">
+    </div>
+
+    <div class="form-group">
+        <label for="date">Start date</label>
+        <input type="text" class="form-control" id="date" required required [(ngModel)]="competition.date" name="date">
+    </div>
+
+    <div class="form-group">
+        <label for="endDate">End date</label>
+        <input type="text" class="form-control" id="cendDateard" required [(ngModel)]="competition.endDate" name="endDate">
+    </div>
+
+    <div class="form-group">
+        <label for="event-type">Event type</label>
+        <input type="text" class="form-control" id="event-type" required [(ngModel)]="competition.eventType" name="eventType">
+    </div>
+
+    <input type = "submit" class = "submit-button" value = "Save Competition">
+</form>

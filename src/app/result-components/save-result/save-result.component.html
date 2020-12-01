@@ -1,0 +1,38 @@
+<h1>Register</h1>
+<form (ngSubmit)="onSubmitResult()">
+    <div class="form-group">
+
+    <div class="form-group">
+        <label for="gender">User</label>
+        <select class="form-control"  id="user" required [(ngModel)]="selectedUserId" name="gender">
+            <option *ngFor="let user of users" [value]="user.id">{{ user.firstName }} {{ user.lastName }}</option>
+        </select>
+    </div>
+
+    <div class="form-group"></div>
+        <label for="discipline">Discipline</label>
+        <input type="text" class="form-control" id="discipline " required [(ngModel)]="result.discipline" name="discipline">
+    </div>
+
+    <div class="form-group">
+        <label for="reported-performance">Reported performance</label>
+        <input type="text" class="form-control" id="reported-performance" required [(ngModel)]="result.reportedPerformance" name="reported-performance">
+    </div>
+
+    <div class="form-group">
+        <label for="announced-performance">Announced Performance</label>
+        <input type="text" class="form-control" id="announced-performance" required required [(ngModel)]="result.announcedPerformance" name="announced-performance">
+    </div>
+
+    <div class="form-group">
+        <label for="card">card</label>
+        <input type="text" class="form-control" id="card" required [(ngModel)]="result.card" name="card">
+    </div>
+
+    <div class="form-group">
+        <label for="remarks">remarks</label>
+        <input type="text" class="form-control" id="remarks" required [(ngModel)]="result.remarks" name="remarks">
+    </div>
+
+    <input type = "submit" class = "submit-button" value = "Save Result">
+</form>
