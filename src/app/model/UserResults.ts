@@ -1,14 +1,12 @@
-import { Competition } from './Competition';
-import { User } from './User';
+import { User } from "./User";
 
-export class Result {
+export class UserResults {
     id: string;
+    name: string;
     discipline: string;
     reportedPerformance: string;
     announcedPerformance: string;
     points: string;
     card: string;
     remarks: string;
-    user: User;
-    competition: Competition;
 }

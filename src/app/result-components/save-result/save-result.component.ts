@@ -56,7 +56,6 @@ export class SaveResultComponent implements OnInit {
       console.log(error)
     },() => {
       console.log("getUser Finished")
-      
     })    
   }
 

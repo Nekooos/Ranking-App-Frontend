@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Competition } from '../../model/Competition';
+import { forkJoin, Observable } from 'rxjs';
+import { UserResults } from 'src/app/model/UserResults';
 import { User } from '../../model/User';
 import { HttpService } from '../../service/http.service';
 
@@ -14,7 +15,16 @@ export class UserComponent implements OnInit {
   userId: string;
   error: String;
   user: User;
-  competitions: Competition[];
+  userResults: UserResults[];
+  displayedColumns: string[] = ['competition', 
+                                'date', 
+                                'endDate', 
+                                'announcedPerformance',
+                                'reportedPerformance', 
+                                'points', 
+                                'card',
+                                'remarks',
+                                ]
 
   constructor(private http: HttpService, private route: ActivatedRoute) { }
 
@@ -23,12 +33,20 @@ export class UserComponent implements OnInit {
       this.userId = data['id'];
     });
 
-    this.getAllCompetitions()
+    const observables$ = [this.http.getUserResults(this.userId), this.http.getById('user', this.userId)]
 
-    this.getById()
+    forkJoin(observables$).subscribe(([userResults, user]) => {
+      console.log(userResults, user)
+      this.userResults = userResults as UserResults[]
+      this.user = user as User
+    }, error => { 
+      console.log(error)
+    }, () => {
+      console.log("getUserResults and getUser complete")
+    })
   }
 
-  getAllCompetitions() {
+  /*getUserResults() {
     this.http.getAll('competition').subscribe(data => {
       this.competitions = data as Competition[];
       
@@ -40,19 +58,19 @@ export class UserComponent implements OnInit {
       }
     
     );
-  }
+  } 
 
   getById() {
     this.http.getById('user', this.userId).subscribe(data => {
       this.user = data as User;
-      
       }, error => {
         console.log(error)
         this.error = error;
       }, () => {
         console.log('name: ' + this.user.firstName + this.user.lastName + ' id:' + this.userId)
+        console.log(this.user.competitions)
+        this.competitions = this.user.competitions as Competition[]
       }
     );
-  }
-
+  }*/
 }

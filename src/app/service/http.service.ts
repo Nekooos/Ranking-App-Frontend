@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AppConstants } from '../model/AppConstants';
 import { CompetitionResult } from '../model/CompetitionResult';
 import { User } from '../model/User';
+import { UserResults } from '../model/UserResults';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,6 @@ export class HttpService {
     )
   }
 
-  
-
   getByUrl(url: string): Observable<any>{
     return this.http.get<any>(url);
   }
@@ -63,6 +62,10 @@ export class HttpService {
 
   getCompetitionResults(id: string): Observable<CompetitionResult[]> {
     return this.http.get<CompetitionResult[]>(this.url + "result/competition-results/"+id)
+  }
+
+  getUserResults(id:String): Observable<UserResults[]> {
+    return this.http.get<UserResults[]>(this.url + "user/user-results/"+id)
   }
 
 }

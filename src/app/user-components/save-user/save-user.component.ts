@@ -21,8 +21,11 @@ export class SaveUserComponent implements OnInit {
 
   saveUser() {
     this.http.saveGeneric(this.user, 'user').subscribe(data =>{
-      console.log(data);
       this.router.navigate(['/user/id/', data.id])
+    }, error => {
+      console.log(error)
+    }, () => {
+      console.log("saveUser finished")
     }) 
   }
 

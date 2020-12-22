@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'result/save/:id', component: SaveResultComponent, pathMatch: 'full' },
   { path: 'result/id/:id', component: ResultComponent, pathMatch: 'full' },
   { path: 'result/all', component: ResultsComponent, pathMatch: 'full' },
+  { path: 'result/edit/:id', component: ResultsComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/404'}
 
 ];
