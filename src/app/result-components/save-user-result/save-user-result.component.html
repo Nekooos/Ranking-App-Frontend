@@ -1,0 +1,102 @@
+<form [formGroup]="resultForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="result-card">
+    <mat-card-header>
+      <mat-card-title>Add Competition Result</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Select User" formControlName="user">
+              <mat-option *ngFor="let user of users" [value]="user.id">
+                {{ user.firstName }} {{ user.lastName }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="resultForm.controls['user'].hasError('required')">
+              User is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Select Discipline" formControlName="discipline">
+              <mat-option *ngFor="let discipline of disciplines" [value]="discipline">
+                {{ discipline }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="resultForm.controls['discipline'].hasError('required')">
+              Discipline is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Announced Performance" formControlName="announcedPerformance">
+            <mat-error *ngIf="resultForm.controls['announcedPerformance'].hasError('required')">
+              Announced Performance is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Reported Performance" formControlName="reportedPerformance">
+            <mat-error *ngIf="resultForm.controls['reportedPerformance'].hasError('required')">
+              Reported Performance is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Points" formControlName="points">
+            <mat-error *ngIf="resultForm.controls['points'].hasError('required')">
+              Reported Performance is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Select Card" formControlName="card">
+              <mat-option *ngFor="let card of cards" [value]="card">
+                {{ card }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="resultForm.controls['card'].hasError('required')">
+              Reported Performance is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Remarks" formControlName="remarks">
+            <mat-error *ngIf="resultForm.controls['remarks'].hasError('required')">
+              Reported Performance is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

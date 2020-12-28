@@ -1,51 +1,79 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Competition } from 'src/app/model/Competition';
 import { Result } from 'src/app/model/Result';
 import { User } from 'src/app/model/User';
 import { HttpService } from 'src/app/service/http.service';
-import { CompetitionComponent } from 'src/app/competition-components/competition/competition.component';
-import { CompetitionResult } from 'src/app/model/CompetitionResult';
-import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-save-result',
-  templateUrl: './save-result.component.html',
-  styleUrls: ['./save-result.component.scss']
+  selector: 'app-save-user-result',
+  templateUrl: './save-user-result.component.html',
+  styleUrls: ['./save-user-result.component.scss']
 })
-export class SaveResultComponent implements OnInit {
-  competitionComponent: CompetitionComponent;
-  result: Result = new Result() ;
+export class SaveUserResultComponent {
+  result: Result = new Result();
   users: User[];
   user: User;
-  competitions: Competition[];
+  competition:Competition;
   selectedUserId: string;
-  competition: Competition;
   competitionId: string;
 
-  getAllCompetitionResultSbscription: Subscription;
+  disciplines: String[] = ["STA", "FEN"]
+  cards: String[] = ["White", "Yellow", "Red"] 
+
+  resultForm = this.formBuilder.group({
+    user: [null, Validators.required],
+    discipline: [null, Validators.required],
+    announcedPerformance: [null, Validators.required],
+    reportedPerformance: [null, Validators.required],
+    points: [null, Validators.required],
+    card: [null, Validators.required],
+    remarks: [null, Validators.required],
+  });
 
   constructor(private httpService: HttpService, 
-    private router: Router,
-    private route: ActivatedRoute) { 
+              private router: Router,
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) {
 
     this.route.params.subscribe(data => {
       this.competitionId = data['id'];
     }); 
-  }
 
-  ngOnInit(): void {
     this.httpService.getAll('user').subscribe(data => {
       this.users = data as User[]
     })
+
+    this.resultForm.valueChanges.subscribe(data => this.onResultFormValueChange(data))
   }
 
-  onSubmitResult() {
-    // change to forkjoin
+  onResultFormValueChange(data) {
+    this.selectedUserId = data.user
+    this.result.discipline = data.discipline
+    this.result.announcedPerformance = data.announcedPerformance
+    this.result.reportedPerformance = data.reportedPerformance
+    this.result.points = data.points
+    this.result.card = data.card
+    this.result.remarks = data.remarks
+  }
+
+  onSubmit() {
     this.getCompetition()
   }
 
-  //2
+  getCompetition() {
+    this.httpService.getById('competition', this.competitionId).subscribe(data => {
+      this.competition = data
+      this.getUser() 
+     
+    }, error => {
+      console.log(error)
+    }, () => {
+      console.log("getCompetition")
+    })
+  }
+
   getUser() {
     this.httpService.getUserById('user', this.selectedUserId).subscribe(data => {
       this.user = data
@@ -59,10 +87,9 @@ export class SaveResultComponent implements OnInit {
     })    
   }
 
-  //3
   saveResult() {
     this.httpService.saveGeneric(this.result, 'result').subscribe(() => {
-      let userExists = this.checkUserExists
+      const userExists = this.checkUserExists
       
       if(!userExists) {
         this.competition.users = this.createUserArray()
@@ -72,34 +99,16 @@ export class SaveResultComponent implements OnInit {
           console.log("navigating to competition")
         })
       }
-      
     }, error => {
       console.log(error)
     }, () => {
       console.log('save Result finished')
-     
     })
   }
   
-  //1
-  getCompetition() {
-    this.httpService.getById('competition', this.competitionId).subscribe(data => {
-      this.competition = data
-      this.getUser() 
-     
-    }, error => {
-      console.log(error)
-    }, () => {
-      console.log("getCompetition")
-    })
-  }
-
-  //4
   editCompetition() {
     this.httpService.editGeneric(this.competition, 'competition', this.competitionId).subscribe(data => {
-      console.log("Edited competition")
       this.router.navigate(['competition/id/' + this.competitionId]).then(() => {
-        console.log("navigating to competition")
       })
     }, error => {
       console.log(error)
@@ -116,12 +125,12 @@ export class SaveResultComponent implements OnInit {
     return users;
   }
 
-  checkUserExists() {
+  checkUserExists(): boolean {
     this.competition.users.forEach(user => {
       if(user.id === this.user.id) {
         return true
       } 
-      return false
     })
+    return false
   }
 }

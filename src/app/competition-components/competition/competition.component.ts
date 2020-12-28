@@ -82,12 +82,6 @@ export class CompetitionComponent implements OnInit, OnDestroy {
     })
   }
 
-  filterByDay(day: number) {
-    this.competitionResult = this.competitionResult.filter(result => {
-        result.day === day 
-    })
-  }
-
   addPositionToResult(competitionResult: CompetitionResult[]): CompetitionResult[] {
     for(let i = 0; i < competitionResult.length; i++) {
        competitionResult[i].position = i+1;

@@ -7,7 +7,8 @@ import { SaveCompetitionComponent } from './competition-components/save-competit
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ResultComponent } from './result-components/result/result.component';
 import { ResultsComponent } from './result-components/results/results.component';
-import { SaveResultComponent } from './result-components/save-result/save-result.component';
+import { SaveUserResultComponent } from './result-components/save-user-result/save-user-result.component';
+import { UserResultsComponent } from './result-components/user-results/user-results.component';
 import { SaveUserComponent } from './user-components/save-user/save-user.component';
 import { UserComponent } from './user-components/user/user.component';
 import { UsersComponent } from './user-components/users/users.component';
@@ -21,10 +22,11 @@ const routes: Routes = [
   { path: 'competition/save', component: SaveCompetitionComponent, pathMatch: 'full' },
   { path: 'competition/id/:id', component: CompetitionComponent, pathMatch: 'full' },
   { path: 'competition/all', component: CompetitionsComponent, pathMatch: 'full' },
-  { path: 'result/save/:id', component: SaveResultComponent, pathMatch: 'full' },
   { path: 'result/id/:id', component: ResultComponent, pathMatch: 'full' },
   { path: 'result/all', component: ResultsComponent, pathMatch: 'full' },
   { path: 'result/edit/:id', component: ResultsComponent, pathMatch: 'full' },
+  { path: 'result/save/:id', component: SaveUserResultComponent, pathMatch: 'full' },
+  { path: 'result/user-results/:id', component: UserResultsComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/404'}
 
 ];

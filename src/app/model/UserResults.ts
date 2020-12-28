@@ -1,5 +1,3 @@
-import { User } from "./User";
-
 export class UserResults {
     id: string;
     name: string;
@@ -9,4 +7,6 @@ export class UserResults {
     points: string;
     card: string;
     remarks: string;
+    date: String;
+    endDate: String;
 }

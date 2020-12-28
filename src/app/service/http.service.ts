@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { stringify } from 'querystring';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AppConstants } from '../model/AppConstants';
 import { CompetitionResult } from '../model/CompetitionResult';
 import { User } from '../model/User';
 import { UserResults } from '../model/UserResults';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class HttpService {
 
   getAll(subject: string): Observable<any[]> {
     return this.http.get<any[]>(this.url + subject + '/all').pipe(
-      
-    )
+      catchError(this.handleError<any[]>('getAll', []))
+    );
   }
 
   getById(subject: string, id: string): Observable<any> {
@@ -66,6 +67,15 @@ export class HttpService {
 
   getUserResults(id:String): Observable<UserResults[]> {
     return this.http.get<UserResults[]>(this.url + "user/user-results/"+id)
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+  
+      console.error(error); 
+
+      return of(result as T);
+    };
   }
 
 }

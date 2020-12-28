@@ -13,7 +13,6 @@ export class CompetitionResult {
     remarks: string;
     user: User;
     competition: Competition;
-    day: Number;
     first_name: string;
     last_name: String;
     position: number;

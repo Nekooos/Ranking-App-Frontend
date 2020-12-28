@@ -6,7 +6,7 @@ export class Result {
     discipline: string;
     reportedPerformance: string;
     announcedPerformance: string;
-    points: string;
+    points: number;
     card: string;
     remarks: string;
     user: User;

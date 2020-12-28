@@ -45,32 +45,4 @@ export class UserComponent implements OnInit {
       console.log("getUserResults and getUser complete")
     })
   }
-
-  /*getUserResults() {
-    this.http.getAll('competition').subscribe(data => {
-      this.competitions = data as Competition[];
-      
-      }, error => {
-        console.log(error)
-        this.error = error;
-      }, () => {
-        console.log('getAll competitions')
-      }
-    
-    );
-  } 
-
-  getById() {
-    this.http.getById('user', this.userId).subscribe(data => {
-      this.user = data as User;
-      }, error => {
-        console.log(error)
-        this.error = error;
-      }, () => {
-        console.log('name: ' + this.user.firstName + this.user.lastName + ' id:' + this.userId)
-        console.log(this.user.competitions)
-        this.competitions = this.user.competitions as Competition[]
-      }
-    );
-  }*/
 }

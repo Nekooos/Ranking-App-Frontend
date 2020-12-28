@@ -15,10 +15,24 @@ import { CompetitionsComponent } from './competition-components/competitions/com
 import { SaveCompetitionComponent } from './competition-components/save-competition/save-competition.component';
 import { ResultComponent } from './result-components/result/result.component';
 import { ResultsComponent } from './result-components/results/results.component';
-import { SaveResultComponent } from './result-components/save-result/save-result.component';
 import {MatTableModule} from '@angular/material/table';
-import { NavigationComponent } from './layout-components/navigation/navigation.component';
 import { MatIconModule } from '@angular/material/icon';
+import { UserResultsComponent } from './result-components/user-results/user-results.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { NavigationComponent } from './navigation/navigation.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SaveUserResultComponent } from './result-components/save-user-result/save-user-result.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { UserResults } from './model/UserResults';
 
 @NgModule({
   declarations: [
@@ -32,8 +46,9 @@ import { MatIconModule } from '@angular/material/icon';
     SaveCompetitionComponent,
     ResultComponent,
     ResultsComponent,
-    SaveResultComponent,
-    NavigationComponent
+    UserResultsComponent,
+    NavigationComponent,
+    SaveUserResultComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +57,21 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCardModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
