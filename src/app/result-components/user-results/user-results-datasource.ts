@@ -7,16 +7,14 @@ import { HttpService } from 'src/app/service/http.service';
 import { ActivatedRoute } from '@angular/router';
 
 export interface UserDataResult {
-  id: string;
   name: string;
   discipline: string;
-  reportedPerformance: string;
   announcedPerformance: string;
+  reportedPerformance: string;
   points: string;
   card: string;
   remarks: string;
-  date: String;
-  endDate: String;
+  date: string;
 }
 /**
  * Data source for the UserResults view. This class should
@@ -30,18 +28,21 @@ export class UserResultsDataSource extends DataSource<UserDataResult> {
 
   userId: string;
 
-  private httpService: HttpService;
-  private route: ActivatedRoute;
-
-  constructor() {
+  constructor(private route:ActivatedRoute, private httpService:HttpService) {
     super();
 
     this.route.params.subscribe(data => {
       this.userId = data['id'];
+      console.log(this.userId)
     });
 
     this.httpService.getUserResults(this.userId).subscribe(data => {
       this.data = data as UserDataResult[]
+      console.log(data)
+    }, error => {
+      console.log(error)
+    }, () => {
+
     })
   }
 
@@ -92,7 +93,11 @@ export class UserResultsDataSource extends DataSource<UserDataResult> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'discipline': return compare(a.discipline, b.discipline, isAsc);
+        case 'points': return compare(a.points, b.points, isAsc);
+        case 'announcedPerformance': return compare(a.announcedPerformance, b.announcedPerformance, isAsc);
+        case 'card': return compare(a.card, b.card, isAsc);
+        case 'date': return compare(a.date, b.date, isAsc);
         default: return 0;
       }
     });

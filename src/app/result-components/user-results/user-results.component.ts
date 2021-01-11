@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/app/service/http.service';
 import { UserResultsDataSource, UserDataResult } from './user-results-datasource';
 
 @Component({
@@ -15,11 +17,23 @@ export class UserResultsComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table: MatTable<UserDataResult>;
   dataSource: UserResultsDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = [ 
+                      'name',
+                      'discipline', 
+                      'reportedPerformance', 
+                      'announcedPerformance', 
+                      'points', 
+                      'card',
+                      'remarks',
+                      'date',
+                      ];
+
+  constructor(private route: ActivatedRoute, private httpService: HttpService) {
+
+  }
 
   ngOnInit() {
-    this.dataSource = new UserResultsDataSource();
+    this.dataSource = new UserResultsDataSource(this.route, this.httpService);
   }
 
   ngAfterViewInit() {

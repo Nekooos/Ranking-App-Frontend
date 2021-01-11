@@ -1,15 +1,45 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z0">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="discipline">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Discipline</th>
+      <td mat-cell *matCellDef="let row">{{row.discipline}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="announcedPerformance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>AP</th>
+      <td mat-cell *matCellDef="let row">{{row.announcedPerformance}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="reportedPerformance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>RP</th>
+      <td mat-cell *matCellDef="let row">{{row.reportedPerformance}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="points">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Points</th>
+      <td mat-cell *matCellDef="let row">{{row.points}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="card">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Card</th>
+      <td mat-cell *matCellDef="let row">{{row.card}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="remarks">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+      <td mat-cell *matCellDef="let row">{{row.renarks}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let row">{{row.date}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -20,6 +50,6 @@
       [length]="dataSource?.data.length"
       [pageIndex]="0"
       [pageSize]="10"
-      [pageSizeOptions]="[10, 25, 50, 100, 250]">
+      [pageSizeOptions]="[10, 25, 50, 100, 200]">
   </mat-paginator>
 </div>

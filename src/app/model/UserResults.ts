@@ -7,6 +7,6 @@ export class UserResults {
     points: string;
     card: string;
     remarks: string;
-    date: String;
-    endDate: String;
+    date: string;
+    endDate: string;
 }
