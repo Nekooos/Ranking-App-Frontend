@@ -20,8 +20,8 @@ export class UserResultsComponent implements AfterViewInit, OnInit {
   displayedColumns = [ 
                       'name',
                       'discipline', 
-                      'reportedPerformance', 
                       'announcedPerformance', 
+                      'reportedPerformance',
                       'points', 
                       'card',
                       'remarks',
@@ -29,11 +29,11 @@ export class UserResultsComponent implements AfterViewInit, OnInit {
                       ];
 
   constructor(private route: ActivatedRoute, private httpService: HttpService) {
-
+    this.dataSource = new UserResultsDataSource(this.route, this.httpService);
   }
 
   ngOnInit() {
-    this.dataSource = new UserResultsDataSource(this.route, this.httpService);
+    
   }
 
   ngAfterViewInit() {

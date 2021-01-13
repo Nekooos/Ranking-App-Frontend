@@ -20,7 +20,7 @@ export class SaveUserResultComponent {
   competitionId: string;
 
   disciplines: String[] = ["STA", "FEN"]
-  cards: String[] = ["White", "Yellow", "Red"] 
+  cards: String[] = ["WHITE", "YELLOW", "RED"] 
 
   resultForm = this.formBuilder.group({
     user: [null, Validators.required],

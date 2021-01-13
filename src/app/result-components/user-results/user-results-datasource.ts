@@ -16,11 +16,7 @@ export interface UserDataResult {
   remarks: string;
   date: string;
 }
-/**
- * Data source for the UserResults view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
+
 export class UserResultsDataSource extends DataSource<UserDataResult> {
   data: UserDataResult[];
   paginator: MatPaginator;
@@ -38,11 +34,10 @@ export class UserResultsDataSource extends DataSource<UserDataResult> {
 
     this.httpService.getUserResults(this.userId).subscribe(data => {
       this.data = data as UserDataResult[]
-      console.log(data)
     }, error => {
       console.log(error)
     }, () => {
-
+      console.log("getUserResults finished")
     })
   }
 
@@ -96,6 +91,7 @@ export class UserResultsDataSource extends DataSource<UserDataResult> {
         case 'discipline': return compare(a.discipline, b.discipline, isAsc);
         case 'points': return compare(a.points, b.points, isAsc);
         case 'announcedPerformance': return compare(a.announcedPerformance, b.announcedPerformance, isAsc);
+        case 'reportedPerformance': return compare(a.reportedPerformance, b.reportedPerformance, isAsc);
         case 'card': return compare(a.card, b.card, isAsc);
         case 'date': return compare(a.date, b.date, isAsc);
         default: return 0;
