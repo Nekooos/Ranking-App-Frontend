@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { UserResults } from 'src/app/model/UserResults';
-import { User } from '../../model/User';
-import { HttpService } from '../../service/http.service';
+import { User } from '../../../model/User';
+import { HttpService } from '../../../service/http.service';
 
 @Component({
   selector: 'app-user',
@@ -33,6 +33,11 @@ export class UserComponent implements OnInit {
       this.userId = data['id'];
     });
 
+    this.http.getById('user', this.userId).subscribe(data => {
+      this.user = data as User;
+    })
+    
+    /*
     const observables$ = [this.http.getUserResults(this.userId), this.http.getById('user', this.userId)]
 
     forkJoin(observables$).subscribe(([userResults, user]) => {
@@ -44,5 +49,6 @@ export class UserComponent implements OnInit {
     }, () => {
       console.log("getUserResults and getUser complete")
     })
+    */
   }
 }

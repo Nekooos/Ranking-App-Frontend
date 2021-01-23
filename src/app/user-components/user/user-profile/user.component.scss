@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+}
+
+.user-profile {
+    width: 100%;
+    text-align: center;
+    height:10rem;
+    margin: 0;
+    padding:0;
+    background-color: steelblue;
+
+    &__name {
+        padding-top: 2rem !important;
+        font-weight: 200;
+    }
+}

@@ -19,13 +19,10 @@ $ranking-app-theme: mat-light-theme((
 
 body {
     font-family: Roboto, Arial, sans-serif;
+    font-size: 62.5%;
     margin: 0;
     font-size: 2rem;
     background: white;
-}
-
-.basic-container {
-    //padding: 2rem;
 }
 
 a {
@@ -37,4 +34,11 @@ a {
       text-decoration: underline;
     }
 }
+
+body { 
+  font-size: 1.4rem; 
+} /* =14px */
+h1   { 
+  font-size: 2.4rem; 
+} /* =24px */
 

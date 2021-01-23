@@ -25,6 +25,11 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   filterDisciplines: String[];
   competitionResult: CompetitionResult[];
 
+  disciplines = false;
+
+  isEditorOrAdmin = false;
+  isUser = false;
+
   displayedColumns: string[] = ['number', 
                                 'name', 
                                 'discipline', 
@@ -68,9 +73,7 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   getCompetitionById() {
     this.httpService.getById('competition', this.competitionId).subscribe(data => {
       this.competition = data as Competition;
-      console.log(this.competition)
       this.users = this.competition.users as User[];
-      console.log(this.users);
     })
   }
 

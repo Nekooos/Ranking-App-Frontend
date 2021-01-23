@@ -8,9 +8,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ResultComponent } from './result-components/result/result.component';
 import { ResultsComponent } from './result-components/results/results.component';
 import { SaveUserResultComponent } from './result-components/save-user-result/save-user-result.component';
-import { UserResultsComponent } from './result-components/user-results/user-results.component';
+import { UserResultsComponent } from './user-components/user/user-profile/user-results/user-results.component';
 import { SaveUserComponent } from './user-components/save-user/save-user.component';
-import { UserComponent } from './user-components/user/user.component';
+import { UserComponent } from './user-components/user/user-profile/user.component';
 import { UsersComponent } from './user-components/users/users.component';
 
 const routes: Routes = [
